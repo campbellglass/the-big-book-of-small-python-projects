@@ -4,7 +4,8 @@ More info at https://en.wikipedia.org/wiki/Sudoku
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: large, game, object-oriented, puzzle"""
 
-import copy, random, sys
+import copy, sys
+import secrets
 
 # This game requires a sudokupuzzle.txt file that contains the puzzles.
 # Download it from https://inventwithpython.com/sudokupuzzles.txt
@@ -169,7 +170,7 @@ with open('sudokupuzzles.txt') as puzzleFile:
 for i, puzzle in enumerate(puzzles):
     puzzles[i] = puzzle.strip()
 
-grid = SudokuGrid(random.choice(puzzles))
+grid = SudokuGrid(secrets.SystemRandom().choice(puzzles))
 
 while True:  # Main game loop.
     grid.display()
@@ -218,7 +219,7 @@ while True:  # Main game loop.
 
     if action.startswith('N'):
         # Get a new puzzle:
-        grid = SudokuGrid(random.choice(puzzles))
+        grid = SudokuGrid(secrets.SystemRandom().choice(puzzles))
         continue
 
     if action.startswith('U'):

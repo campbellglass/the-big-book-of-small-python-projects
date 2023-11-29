@@ -3,7 +3,8 @@ The traditional Japanese dice game of even-odd.
 View this code athttps://nostarch.com/big-book-small-python-projects
 Tags: short, beginner, game"""
 
-import random, sys
+import sys
+import secrets
 
 JAPANESE_NUMBERS = {1: 'ICHI', 2: 'NI', 3: 'SAN',
                     4: 'SHI', 5: 'GO', 6: 'ROKU'}
@@ -34,8 +35,8 @@ while True:  # Main game loop.
             break  # Exit the loop once a valid bet is placed.
 
     # Roll the dice.
-    dice1 = random.randint(1, 6)
-    dice2 = random.randint(1, 6)
+    dice1 = secrets.SystemRandom().randint(1, 6)
+    dice2 = secrets.SystemRandom().randint(1, 6)
 
     print('The dealer swirls the cup and you hear the rattle of dice.')
     print('The dealer slams the cup on the floor, still covering the')

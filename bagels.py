@@ -4,8 +4,7 @@ This code is available at https://nostarch.com/big-book-small-python-programming
 A version of this game is featured in the book, "Invent Your Own
 Computer Games with Python" https://nostarch.com/inventwithpython
 Tags: short, game, puzzle"""
-
-import random
+import secrets
 
 NUM_DIGITS = 3  # (!) Try setting this to 1 or 10.
 MAX_GUESSES = 10  # (!) Try setting this to 1 or 100.
@@ -59,7 +58,7 @@ clues would be Fermi Pico.'''.format(NUM_DIGITS))
 def getSecretNum():
     """Returns a string made up of NUM_DIGITS unique random digits."""
     numbers = list('0123456789')  # Create a list of digits 0 to 9.
-    random.shuffle(numbers)  # Shuffle them into random order.
+    secrets.SystemRandom().shuffle(numbers)  # Shuffle them into random order.
 
     # Get the first NUM_DIGITS digits in the list for the secret number:
     secretNum = ''

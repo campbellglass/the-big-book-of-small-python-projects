@@ -3,7 +3,8 @@ Test your reflexes to see if you're the fastest draw in the west.
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: tiny, beginner, game"""
 
-import random, sys, time
+import sys, time
+import secrets
 
 print('Fast Draw, by Al Sweigart al@inventwithpython.com')
 print()
@@ -17,7 +18,7 @@ input('Press Enter to begin...')
 while True:
     print()
     print('It is high noon...')
-    time.sleep(random.randint(20, 50) / 10.0)
+    time.sleep(secrets.SystemRandom().randint(20, 50) / 10.0)
     print('DRAW!')
     drawTime = time.time()
     input()  # This function call doesn't return until Enter is pressed.

@@ -3,7 +3,8 @@ A screensaver in the style of The Matrix movie's visuals.
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: tiny, artistic, beginner, scrolling"""
 
-import random, shutil, sys, time
+import shutil, sys, time
+import secrets
 
 # Set up the constants:
 MIN_STREAM_LENGTH = 6  # (!) Try changing this to 1 or 50.
@@ -33,14 +34,14 @@ try:
         # Set up the counter for each column:
         for i in range(WIDTH):
             if columns[i] == 0:
-                if random.random() <= DENSITY:
+                if secrets.SystemRandom().random() <= DENSITY:
                     # Restart a stream on this column.
-                    columns[i] = random.randint(MIN_STREAM_LENGTH,
+                    columns[i] = secrets.SystemRandom().randint(MIN_STREAM_LENGTH,
                                                 MAX_STREAM_LENGTH)
 
             # Display an empty space or a 1/0 character.
             if columns[i] > 0:
-                print(random.choice(STREAM_CHARS), end='')
+                print(secrets.SystemRandom().choice(STREAM_CHARS), end='')
                 columns[i] -= 1
             else:
                 print(' ', end='')

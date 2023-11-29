@@ -3,7 +3,8 @@ A sample progress bar animation that can be used in other programs.
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: tiny, module"""
 
-import random, time
+import time
+import secrets
 
 BAR = chr(9608) # Character 9608 is '█'
 
@@ -14,7 +15,7 @@ def main():
     downloadSize = 4096
     while bytesDownloaded < downloadSize:
         # "Download" a random amount of "bytes":
-        bytesDownloaded += random.randint(0, 100)
+        bytesDownloaded += secrets.SystemRandom().randint(0, 100)
 
         # Get the progress bar string for this amount of progress:
         barStr = getProgressBar(bytesDownloaded, downloadSize)

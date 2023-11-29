@@ -3,8 +3,7 @@ A silly bluffing game between two human players. Based on the game
 from the show, 8 Out of 10 Cats.
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: large, beginner, game, two-player"""
-
-import random
+import secrets
 
 print('''Carrot in a Box, by Al Sweigart al@inventwithpython.com
 
@@ -46,7 +45,7 @@ print()
 
 print(p1Name + ' here is the inside of your box:')
 
-if random.randint(1, 2) == 1:
+if secrets.SystemRandom().randint(1, 2) == 1:
     carrotInFirstBox = True
 else:
     carrotInFirstBox = False

@@ -7,7 +7,8 @@ Tags: large, artistic, game, puzzle"""
 # NOTE: This program requires the sevenletterwords.txt file. You can
 # download it from https://inventwithpython.com/sevenletterwords.txt
 
-import random, sys
+import sys
+import secrets
 
 # Set up the constants:
 # The garbage filler characters for the "computer memory" display.
@@ -34,7 +35,7 @@ as their 2nd and 3rd letter. You get four guesses.\n''')
     gameWords = getWords()
     # The "computer memory" is just cosmetic, but it looks cool:
     computerMemory = getComputerMemoryString(gameWords)
-    secretPassword = random.choice(gameWords)
+    secretPassword = secrets.SystemRandom().choice(gameWords)
 
     print(computerMemory)
     # Start at 4 tries remaining, going down:
@@ -55,7 +56,7 @@ def getWords():
     The secret password will be the first word in the list.
     To make the game fair, we try to ensure that there are words with
     a range of matching numbers of letters as the secret word."""
-    secretPassword = random.choice(WORDS)
+    secretPassword = secrets.SystemRandom().choice(WORDS)
     words = [secretPassword]
 
     # Find two more words; these have zero matching letters.
@@ -100,7 +101,7 @@ def getOneWordExcept(blocklist=None):
         blocklist = []
 
     while True:
-        randomWord = random.choice(WORDS)
+        randomWord = secrets.SystemRandom().choice(WORDS)
         if randomWord not in blocklist:
             return randomWord
 
@@ -119,9 +120,9 @@ def getComputerMemoryString(words):
 
     # Pick one line per word to contain a word. There are 16 lines, but
     # they are split into two halves.
-    linesWithWords = random.sample(range(16 * 2), len(words))
+    linesWithWords = secrets.SystemRandom().sample(range(16 * 2), len(words))
     # The starting memory address (this is also cosmetic).
-    memoryAddress = 16 * random.randint(0, 4000)
+    memoryAddress = 16 * secrets.SystemRandom().randint(0, 4000)
 
     # Create the "computer memory" string.
     computerMemory = []  # Will contain 16 strings, one for each line.
@@ -131,20 +132,20 @@ def getComputerMemoryString(words):
         leftHalf = ''
         rightHalf = ''
         for j in range(16):  # Each half line has 16 characters.
-            leftHalf += random.choice(GARBAGE_CHARS)
-            rightHalf += random.choice(GARBAGE_CHARS)
+            leftHalf += secrets.SystemRandom().choice(GARBAGE_CHARS)
+            rightHalf += secrets.SystemRandom().choice(GARBAGE_CHARS)
 
         # Fill in the password from words:
         if lineNum in linesWithWords:
             # Find a random place in the half line to insert the word:
-            insertionIndex = random.randint(0, 9)
+            insertionIndex = secrets.SystemRandom().randint(0, 9)
             # Insert the word:
             leftHalf = (leftHalf[:insertionIndex] + words[nextWord]
                 + leftHalf[insertionIndex + 7:])
             nextWord += 1  # Update the word to put in the half line.
         if lineNum + 16 in linesWithWords:
             # Find a random place in the half line to insert the word:
-            insertionIndex = random.randint(0, 9)
+            insertionIndex = secrets.SystemRandom().randint(0, 9)
             # Insert the word:
             rightHalf = (rightHalf[:insertionIndex] + words[nextWord]
                 + rightHalf[insertionIndex + 7:])

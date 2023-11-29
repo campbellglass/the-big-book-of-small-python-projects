@@ -6,8 +6,7 @@ three skulls you lose all your stars.
 Inspired by the Zombie Dice game from Steve Jackson Games.
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: large, game, multiplayer"""
-
-import random
+import secrets
 
 # Set up the constants:
 GOLD = 'GOLD'
@@ -111,14 +110,14 @@ while True:  # Main game loop.
             break
 
         # Pull dice from the cup until you have 3 in your hand:
-        random.shuffle(cup)  # Shuffle the dice in the cup.
+        secrets.SystemRandom().shuffle(cup)  # Shuffle the dice in the cup.
         while len(hand) < 3:
             hand.append(cup.pop())
 
         # Roll the dice:
         rollResults = []
         for dice in hand:
-            roll = random.randint(1, 6)
+            roll = secrets.SystemRandom().randint(1, 6)
             if dice == GOLD:
                 # Roll a gold die (3 stars, 2 questions, 1 skull):
                 if 1 <= roll <= 3:

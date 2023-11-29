@@ -6,7 +6,8 @@ Tags: large, game, word, puzzle"""
 # A version of this game is featured in the book "Invent Your Own
 # Computer Games with Python" https://nostarch.com/inventwithpython
 
-import random, sys
+import sys
+import secrets
 
 # Set up the constants:
 # (!) Try adding or changing the strings in HANGMAN_PICS to make a
@@ -79,7 +80,7 @@ def main():
     # Setup variables for a new game:
     missedLetters = []  # List of incorrect letter guesses.
     correctLetters = []  # List of correct letter guesses.
-    secretWord = random.choice(WORDS)  # The word the player must guess.
+    secretWord = secrets.SystemRandom().choice(WORDS)  # The word the player must guess.
 
     while True:  # Main game loop.
         drawHangman(missedLetters, correctLetters, secretWord)

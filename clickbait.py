@@ -2,8 +2,7 @@
 A clickbait headline generator for your soulless content farm website.
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: large, beginner, humor, word"""
-
-import random
+import secrets
 
 # Set up the constants:
 OBJECT_PRONOUNS = ['Her', 'Him', 'Them']
@@ -35,7 +34,7 @@ def main():
             break  # Exit the loop once a valid number is entered.
 
     for i in range(numberOfHeadlines):
-        clickbaitType = random.randint(1, 8)
+        clickbaitType = secrets.SystemRandom().randint(1, 8)
 
         if clickbaitType == 1:
             headline = generateAreMillenialsKillingHeadline()
@@ -57,67 +56,67 @@ def main():
         print(headline)
     print()
 
-    website = random.choice(['wobsite', 'blag', 'Facebuuk', 'Googles',
+    website = secrets.SystemRandom().choice(['wobsite', 'blag', 'Facebuuk', 'Googles',
                              'Facesbook', 'Tweedie', 'Pastagram'])
-    when = random.choice(WHEN).lower()
+    when = secrets.SystemRandom().choice(WHEN).lower()
     print('Post these to our', website, when, 'or you\'re fired!')
 
 
 # Each of these functions returns a different type of headline:
 def generateAreMillenialsKillingHeadline():
-    noun = random.choice(NOUNS)
+    noun = secrets.SystemRandom().choice(NOUNS)
     return 'Are Millenials Killing the {} Industry?'.format(noun)
 
 
 def generateWhatYouDontKnowHeadline():
-    noun = random.choice(NOUNS)
-    pluralNoun = random.choice(NOUNS) + 's'
-    when = random.choice(WHEN)
+    noun = secrets.SystemRandom().choice(NOUNS)
+    pluralNoun = secrets.SystemRandom().choice(NOUNS) + 's'
+    when = secrets.SystemRandom().choice(WHEN)
     return 'Without This {}, {} Could Kill You {}'.format(noun, pluralNoun, when)
 
 
 def generateBigCompaniesHateHerHeadline():
-    pronoun = random.choice(OBJECT_PRONOUNS)
-    state = random.choice(STATES)
-    noun1 = random.choice(NOUNS)
-    noun2 = random.choice(NOUNS)
+    pronoun = secrets.SystemRandom().choice(OBJECT_PRONOUNS)
+    state = secrets.SystemRandom().choice(STATES)
+    noun1 = secrets.SystemRandom().choice(NOUNS)
+    noun2 = secrets.SystemRandom().choice(NOUNS)
     return 'Big Companies Hate {}! See How This {} {} Invented a Cheaper {}'.format(pronoun, state, noun1, noun2)
 
 
 def generateYouWontBelieveHeadline():
-    state = random.choice(STATES)
-    noun = random.choice(NOUNS)
-    pronoun = random.choice(POSSESIVE_PRONOUNS)
-    place = random.choice(PLACES)
+    state = secrets.SystemRandom().choice(STATES)
+    noun = secrets.SystemRandom().choice(NOUNS)
+    pronoun = secrets.SystemRandom().choice(POSSESIVE_PRONOUNS)
+    place = secrets.SystemRandom().choice(PLACES)
     return 'You Won\'t Believe What This {} {} Found in {} {}'.format(state, noun, pronoun, place)
 
 
 def generateDontWantYouToKnowHeadline():
-    pluralNoun1 = random.choice(NOUNS) + 's'
-    pluralNoun2 = random.choice(NOUNS) + 's'
+    pluralNoun1 = secrets.SystemRandom().choice(NOUNS) + 's'
+    pluralNoun2 = secrets.SystemRandom().choice(NOUNS) + 's'
     return 'What {} Don\'t Want You To Know About {}'.format(pluralNoun1, pluralNoun2)
 
 
 def generateGiftIdeaHeadline():
-    number = random.randint(7, 15)
-    noun = random.choice(NOUNS)
-    state = random.choice(STATES)
+    number = secrets.SystemRandom().randint(7, 15)
+    noun = secrets.SystemRandom().choice(NOUNS)
+    state = secrets.SystemRandom().choice(STATES)
     return '{} Gift Ideas to Give Your {} From {}'.format(number, noun, state)
 
 
 def generateReasonsWhyHeadline():
-    number1 = random.randint(3, 19)
-    pluralNoun = random.choice(NOUNS) + 's'
+    number1 = secrets.SystemRandom().randint(3, 19)
+    pluralNoun = secrets.SystemRandom().choice(NOUNS) + 's'
     # number2 should be no larger than number1:
-    number2 = random.randint(1, number1)
+    number2 = secrets.SystemRandom().randint(1, number1)
     return '{} Reasons Why {} Are More Interesting Than You Think (Number {} Will Surprise You!)'.format(number1, pluralNoun, number2)
 
 
 def generateJobAutomatedHeadline():
-    state = random.choice(STATES)
-    noun = random.choice(NOUNS)
+    state = secrets.SystemRandom().choice(STATES)
+    noun = secrets.SystemRandom().choice(NOUNS)
 
-    i = random.randint(0, 2)
+    i = secrets.SystemRandom().randint(0, 2)
     pronoun1 = POSSESIVE_PRONOUNS[i]
     pronoun2 = PERSONAL_PRONOUNS[i]
     if pronoun1 == 'Their':

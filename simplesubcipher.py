@@ -4,8 +4,7 @@ symbol in the plaintext and each symbol in the ciphertext.
 More info at: https://en.wikipedia.org/wiki/Substitution_cipher
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: short, cryptography, math"""
-
-import random
+import secrets
 
 try:
     import pyperclip  # pyperclip copies text to the clipboard.
@@ -119,7 +118,7 @@ def translateMessage(message, key, mode):
 def generateRandomKey():
     """Generate and return a random encryption key."""
     key = list(LETTERS)  # Get a list from the LETTERS string.
-    random.shuffle(key)  # Randomly shuffle the list.
+    secrets.SystemRandom().shuffle(key)  # Randomly shuffle the list.
     return ''.join(key)  # Get a string from the list.
 
 

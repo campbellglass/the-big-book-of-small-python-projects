@@ -4,7 +4,8 @@ More info: https://en.wikipedia.org/wiki/Langton%27s_ant
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: large, artistic, bext, simulation"""
 
-import copy, random, sys, time
+import copy, sys, time
+import secrets
 
 try:
     import bext
@@ -55,9 +56,9 @@ def main():
     ants = []
     for i in range(NUMBER_OF_ANTS):
         ant = {
-            'x': random.randint(0, WIDTH - 1),
-            'y': random.randint(0, HEIGHT - 1),
-            'direction': random.choice([NORTH, SOUTH, EAST, WEST]),
+            'x': secrets.SystemRandom().randint(0, WIDTH - 1),
+            'y': secrets.SystemRandom().randint(0, HEIGHT - 1),
+            'direction': secrets.SystemRandom().choice([NORTH, SOUTH, EAST, WEST]),
         }
         ants.append(ant)
 

@@ -5,7 +5,8 @@ Inspired by the "Flood It!" game.
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: large, bext, game"""
 
-import random, sys
+import sys
+import secrets
 
 try:
     import bext
@@ -94,13 +95,13 @@ def getNewBoard():
     # Create random colors for the board.
     for x in range(BOARD_WIDTH):
         for y in range(BOARD_HEIGHT):
-            board[(x, y)] = random.choice(TILE_TYPES)
+            board[(x, y)] = secrets.SystemRandom().choice(TILE_TYPES)
 
     # Make several tiles the same as their neighbor. This creates groups
     # of the same color/shape.
     for i in range(BOARD_WIDTH * BOARD_HEIGHT):
-        x = random.randint(0, BOARD_WIDTH - 2)
-        y = random.randint(0, BOARD_HEIGHT - 1)
+        x = secrets.SystemRandom().randint(0, BOARD_WIDTH - 2)
+        y = secrets.SystemRandom().randint(0, BOARD_HEIGHT - 1)
         board[(x + 1, y)] = board[(x, y)]
     return board
 

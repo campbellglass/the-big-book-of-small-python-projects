@@ -3,7 +3,8 @@ Slide the numbered tiles into the correct order.
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: large, game, puzzle"""
 
-import random, sys
+import sys
+import secrets
 
 BLANK = '  '  # Note: This string is two spaces, not one.
 
@@ -121,7 +122,7 @@ def makeRandomMove(board):
     if blankx != 0:
         validMoves.append('D')
 
-    makeMove(board, random.choice(validMoves))
+    makeMove(board, secrets.SystemRandom().choice(validMoves))
 
 
 def getNewPuzzle(moves=200):

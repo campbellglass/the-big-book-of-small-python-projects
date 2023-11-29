@@ -3,7 +3,8 @@ Ask a yes/no question about your future. Inspired by the Magic 8 Ball.
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: tiny, beginner, humor"""
 
-import random, time
+import time
+import secrets
 
 
 def slowSpacePrint(text, interval=0.1):
@@ -39,10 +40,10 @@ replies = [
     'I SHALL CONSULT MY VISIONS...',
     'YOU MAY WANT TO SIT DOWN FOR THIS...',
 ]
-slowSpacePrint(random.choice(replies))
+slowSpacePrint(secrets.SystemRandom().choice(replies))
 
 # Dramatic pause:
-slowSpacePrint('.' * random.randint(4, 12), 0.7)
+slowSpacePrint('.' * secrets.SystemRandom().randint(4, 12), 0.7)
 
 # Give the answer:
 slowSpacePrint('I HAVE AN ANSWER...', 0.2)
@@ -60,4 +61,4 @@ answers = [
     'YES, THOUGH YOU MAY NOT LIKE IT',
     'NO, BUT YOU MAY WISH IT WAS SO',
 ]
-slowSpacePrint(random.choice(answers), 0.05)
+slowSpacePrint(secrets.SystemRandom().choice(answers), 0.05)

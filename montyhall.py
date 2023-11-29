@@ -4,7 +4,8 @@ More info at https://en.wikipedia.org/wiki/Monty_Hall_problem
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: large, game, math, simulation"""
 
-import random, sys
+import sys
+import secrets
 
 ALL_CLOSED = """
 +------+  +------+  +------+
@@ -97,7 +98,7 @@ stayWins = 0
 stayLosses = 0
 while True:  # Main program loop.
     # The computer picks which door has the car:
-    doorThatHasCar = random.randint(1, 3)
+    doorThatHasCar = secrets.SystemRandom().randint(1, 3)
 
     # Ask the player to pick a door:
     print(ALL_CLOSED)
@@ -116,7 +117,7 @@ while True:  # Main program loop.
     # Figure out which goat door to show the player:
     while True:
         # Select a door that is a goat and not picked by the player:
-        showGoatDoor = random.randint(1, 3)
+        showGoatDoor = secrets.SystemRandom().randint(1, 3)
         if showGoatDoor != doorPick and showGoatDoor != doorThatHasCar:
             break
 

@@ -6,7 +6,8 @@ More info at https://en.wikipedia.org/wiki/2048_(video_game)
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: large, game, puzzle"""
 
-import random, sys
+import sys
+import secrets
 
 # Set up the constants:
 BLANK = ''  # A value that represents a blank space on the board.
@@ -62,7 +63,7 @@ def getNewBoard():
     # Pick two random spaces for the two starting 2's:
     startingTwosPlaced = 0  # The number of starting spaces picked.
     while startingTwosPlaced < 2:  # Repeat for duplicate spaces.
-        randomSpace = (random.randint(0, 3), random.randint(0, 3))
+        randomSpace = (secrets.SystemRandom().randint(0, 3), secrets.SystemRandom().randint(0, 3))
         # Make sure the randomly selected space isn't already taken:
         if newBoard[randomSpace] == BLANK:
             newBoard[randomSpace] = 2
@@ -224,7 +225,7 @@ def askForPlayerMove():
 def addTwoToBoard(board):
     """Adds a new 2 tile randomly to the board."""
     while True:
-        randomSpace = (random.randint(0, 3), random.randint(0, 3))
+        randomSpace = (secrets.SystemRandom().randint(0, 3), secrets.SystemRandom().randint(0, 3))
         if board[randomSpace] == BLANK:
             board[randomSpace] = 2
             return  # Return after finding one non-blank tile.

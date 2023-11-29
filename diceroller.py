@@ -3,7 +3,8 @@ Simulates dice rolls using the Dungeons & Dragons dice roll notation.
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: short, simulation"""
 
-import random, sys
+import sys
+import secrets
 
 print('''Dice Roller, by Al Sweigart al@inventwithpython.com
 
@@ -65,7 +66,7 @@ while True:  # Main program loop:
         # Simulate the dice rolls:
         rolls = []
         for i in range(numberOfDice):
-            rollResult = random.randint(1, numberOfSides)
+            rollResult = secrets.SystemRandom().randint(1, numberOfSides)
             rolls.append(rollResult)
 
         # Display the total:

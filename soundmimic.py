@@ -5,7 +5,8 @@ Simon.
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: short, beginner, game"""
 
-import random, sys, time
+import sys, time
+import secrets
 
 # Download the sound files from these URLs (or use your own):
 # https://inventwithpython.com/soundA.wav
@@ -35,7 +36,7 @@ while True:
     print('\n' * 60)  # Clear the screen by printing several newlines.
 
     # Add a random letter to the pattern:
-    pattern = pattern + random.choice('ASDF')
+    pattern = pattern + secrets.SystemRandom().choice('ASDF')
 
     # Display the pattern (and play their sounds):
     print('Pattern: ', end='')
