@@ -2,8 +2,7 @@
 Translates English messages into sPOnGEcAsE.
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: tiny, beginner, word"""
-
-import random
+import secrets
 
 try:
     import pyperclip  # pyperclip copies text to the clipboard.
@@ -43,7 +42,7 @@ def englishToSpongecase(message):
             spongecase += character.lower()
 
         # Flip the case, 90% of the time.
-        if random.randint(1, 100) <= 90:
+        if secrets.SystemRandom().randint(1, 100) <= 90:
             useUpper = not useUpper  # Flip the case.
     return spongecase
 

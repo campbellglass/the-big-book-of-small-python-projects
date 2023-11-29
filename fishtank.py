@@ -7,7 +7,8 @@ https://twitter.com/EmojiAquarium
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: extra-large, artistic, bext"""
 
-import random, sys, time
+import sys, time
+import secrets
 
 try:
     import bext
@@ -71,16 +72,16 @@ def main():
     BUBBLERS = []
     for i in range(NUM_BUBBLERS):
         # Each bubbler starts at a random position.
-        BUBBLERS.append(random.randint(LEFT_EDGE, RIGHT_EDGE))
+        BUBBLERS.append(secrets.SystemRandom().randint(LEFT_EDGE, RIGHT_EDGE))
     BUBBLES = []
 
     KELPS = []
     for i in range(NUM_KELP):
-        kelpx = random.randint(LEFT_EDGE, RIGHT_EDGE)
+        kelpx = secrets.SystemRandom().randint(LEFT_EDGE, RIGHT_EDGE)
         kelp = {'x': kelpx, 'segments': []}
         # Generate each segment of the kelp:
-        for i in range(random.randint(6, HEIGHT - 1)):
-            kelp['segments'].append(random.choice(['(', ')']))
+        for i in range(secrets.SystemRandom().randint(6, HEIGHT - 1)):
+            kelp['segments'].append(secrets.SystemRandom().choice(['(', ')']))
         KELPS.append(kelp)
 
     # Run the simulation:
@@ -95,16 +96,16 @@ def main():
 
 def getRandomColor():
     """Return a string of a random color."""
-    return random.choice(('black', 'red', 'green', 'yellow', 'blue',
+    return secrets.SystemRandom().choice(('black', 'red', 'green', 'yellow', 'blue',
                           'purple', 'cyan', 'white'))
 
 
 def generateFish():
     """Return a dictionary that represents a fish."""
-    fishType = random.choice(FISH_TYPES)
+    fishType = secrets.SystemRandom().choice(FISH_TYPES)
 
     # Set up colors for each character in the fish text:
-    colorPattern = random.choice(('random', 'head-tail', 'single'))
+    colorPattern = secrets.SystemRandom().choice(('random', 'head-tail', 'single'))
     fishLength = len(fishType['right'][0])
     if colorPattern == 'random':  # All parts are randomly colored.
         colors = []
@@ -121,16 +122,16 @@ def generateFish():
     fish = {'right':            fishType['right'],
             'left':             fishType['left'],
             'colors':           colors,
-            'hSpeed':           random.randint(1, 6),
-            'vSpeed':           random.randint(5, 15),
-            'timeToHDirChange': random.randint(10, 60),
-            'timeToVDirChange': random.randint(2, 20),
-            'goingRight':       random.choice([True, False]),
-            'goingDown':        random.choice([True, False])}
+            'hSpeed':           secrets.SystemRandom().randint(1, 6),
+            'vSpeed':           secrets.SystemRandom().randint(5, 15),
+            'timeToHDirChange': secrets.SystemRandom().randint(10, 60),
+            'timeToVDirChange': secrets.SystemRandom().randint(2, 20),
+            'goingRight':       secrets.SystemRandom().choice([True, False]),
+            'goingDown':        secrets.SystemRandom().choice([True, False])}
 
     # 'x' is always the leftmost side of the fish body:
-    fish['x'] = random.randint(0, WIDTH - 1 - LONGEST_FISH_LENGTH)
-    fish['y'] = random.randint(0, HEIGHT - 2)
+    fish['x'] = secrets.SystemRandom().randint(0, WIDTH - 1 - LONGEST_FISH_LENGTH)
+    fish['y'] = secrets.SystemRandom().randint(0, HEIGHT - 2)
     return fish
 
 
@@ -158,7 +159,7 @@ def simulateAquarium():
         # Fish can randomly change their horizontal direction:
         fish['timeToHDirChange'] -= 1
         if fish['timeToHDirChange'] == 0:
-            fish['timeToHDirChange'] = random.randint(10, 60)
+            fish['timeToHDirChange'] = secrets.SystemRandom().randint(10, 60)
             # Turn the fish around:
             fish['goingRight'] = not fish['goingRight']
 
@@ -178,19 +179,19 @@ def simulateAquarium():
         # Fish can randomly change their vertical direction:
         fish['timeToVDirChange'] -= 1
         if fish['timeToVDirChange'] == 0:
-            fish['timeToVDirChange'] = random.randint(2, 20)
+            fish['timeToVDirChange'] = secrets.SystemRandom().randint(2, 20)
             # Turn the fish around:
             fish['goingDown'] = not fish['goingDown']
 
     # Generate bubbles from bubblers:
     for bubbler in BUBBLERS:
         # There is a 1 in 5 chance of making a bubble:
-        if random.randint(1, 5) == 1:
+        if secrets.SystemRandom().randint(1, 5) == 1:
             BUBBLES.append({'x': bubbler, 'y': HEIGHT - 2})
 
     # Move the bubbles:
     for bubble in BUBBLES:
-        diceRoll = random.randint(1, 6)
+        diceRoll = secrets.SystemRandom().randint(1, 6)
         if (diceRoll == 1) and (bubble['x'] != LEFT_EDGE):
             bubble['x'] -= 1  # Bubble goes left.
         elif (diceRoll == 2) and (bubble['x'] != RIGHT_EDGE):
@@ -208,7 +209,7 @@ def simulateAquarium():
     for kelp in KELPS:
         for i, kelpSegment in enumerate(kelp['segments']):
             # 1 in 20 chance to change waving:
-            if random.randint(1, 20) == 1:
+            if secrets.SystemRandom().randint(1, 20) == 1:
                 if kelpSegment == '(':
                     kelp['segments'][i] = ')'
                 elif kelpSegment == ')':
@@ -228,7 +229,7 @@ def drawAquarium():
     bext.fg('white')
     for bubble in BUBBLES:
         bext.goto(bubble['x'], bubble['y'])
-        print(random.choice(('o', 'O')), end='')
+        print(secrets.SystemRandom().choice(('o', 'O')), end='')
 
     # Draw the fish:
     for fish in FISHES:

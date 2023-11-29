@@ -6,7 +6,8 @@ This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: large, board game, game, two-player
 """
 
-import random, sys
+import sys
+import secrets
 
 X_PLAYER = 'X'
 O_PLAYER = 'O'
@@ -103,7 +104,7 @@ the middle flower space are safe and cannot be landed on.''')
         flipTally = 0
         print('Flips: ', end='')
         for i in range(4):  # Flip 4 coins.
-            result = random.randint(0, 1)
+            result = secrets.SystemRandom().randint(0, 1)
             if result == 0:
                 print('T', end='')  # Tails.
             else:

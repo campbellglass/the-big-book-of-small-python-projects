@@ -4,7 +4,8 @@ More info at https://en.wikipedia.org/wiki/Birthday_problem
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: short, math, simulation"""
 
-import datetime, random
+import datetime
+import secrets
 
 
 def getBirthdays(numberOfBirthdays):
@@ -16,7 +17,7 @@ def getBirthdays(numberOfBirthdays):
         startOfYear = datetime.date(2001, 1, 1)
 
         # Get a random day into the year:
-        randomNumberOfDays = datetime.timedelta(random.randint(0, 364))
+        randomNumberOfDays = datetime.timedelta(secrets.SystemRandom().randint(0, 364))
         birthday = startOfYear + randomNumberOfDays
         birthdays.append(birthday)
     return birthdays

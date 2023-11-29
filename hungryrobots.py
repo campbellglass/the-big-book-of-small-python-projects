@@ -3,7 +3,8 @@ Escape the hungry robots by making them crash into each other.
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: large, game"""
 
-import random, sys
+import sys
+import secrets
 
 # Set up the constants:
 WIDTH = 40           # (!) Try changing this to 70 or 10.
@@ -95,8 +96,8 @@ def getNewBoard():
 def getRandomEmptySpace(board, robots):
     """Return a (x, y) integer tuple of an empty space on the board."""
     while True:
-        randomX = random.randint(1, WIDTH - 2)
-        randomY = random.randint(1, HEIGHT - 2)
+        randomX = secrets.SystemRandom().randint(1, WIDTH - 2)
+        randomY = secrets.SystemRandom().randint(1, HEIGHT - 2)
         if isEmpty(randomX, randomY, board, robots):
             break
     return (randomX, randomY)

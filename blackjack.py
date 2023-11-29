@@ -5,7 +5,8 @@ More info at: https://en.wikipedia.org/wiki/Blackjack
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: large, game, card game"""
 
-import random, sys
+import sys
+import secrets
 
 # Set up the constants:
 HEARTS   = chr(9829) # Character 9829 is '♥'.
@@ -145,7 +146,7 @@ def getDeck():
             deck.append((str(rank), suit))  # Add the numbered cards.
         for rank in ('J', 'Q', 'K', 'A'):
             deck.append((rank, suit))  # Add the face and ace cards.
-    random.shuffle(deck)
+    secrets.SystemRandom().shuffle(deck)
     return deck
 
 

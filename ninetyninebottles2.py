@@ -5,7 +5,8 @@ gets sillier and sillier with each verse. Press Ctrl-C to stop.
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: short, scrolling, word"""
 
-import random, sys, time
+import sys, time
+import secrets
 
 # Set up the constants:
 # (!) Try changing both of these to 0 to print all the lyrics at once.
@@ -55,30 +56,30 @@ try:
         print()  # Print a newline.
 
         # Choose a random line to make "sillier":
-        lineNum = random.randint(0, 3)
+        lineNum = secrets.SystemRandom().randint(0, 3)
 
         # Make a list from the line string so we can edit it. (Strings
         # in Python are immutable.)
         line = list(lines[lineNum])
 
-        effect = random.randint(0, 3)
+        effect = secrets.SystemRandom().randint(0, 3)
         if effect == 0:  # Replace a character with a space.
-            charIndex = random.randint(0, len(line) - 1)
+            charIndex = secrets.SystemRandom().randint(0, len(line) - 1)
             line[charIndex] = ' '
         elif effect == 1:  # Change the casing of a character.
-            charIndex = random.randint(0, len(line) - 1)
+            charIndex = secrets.SystemRandom().randint(0, len(line) - 1)
             if line[charIndex].isupper():
                 line[charIndex] = line[charIndex].lower()
             elif line[charIndex].islower():
                 line[charIndex] = line[charIndex].upper()
         elif effect == 2:  # Transpose two characters.
-            charIndex = random.randint(0, len(line) - 2)
+            charIndex = secrets.SystemRandom().randint(0, len(line) - 2)
             firstChar = line[charIndex]
             secondChar = line[charIndex + 1]
             line[charIndex] = secondChar
             line[charIndex + 1] = firstChar
         elif effect == 3:  # Double a character.
-            charIndex = random.randint(0, len(line) - 2)
+            charIndex = secrets.SystemRandom().randint(0, len(line) - 2)
             line.insert(charIndex, line[charIndex])
 
         # Convert the line list back to a string and put it in lines:

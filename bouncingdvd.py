@@ -6,7 +6,8 @@ NOTE: Do not resize the terminal window while this program is running.
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: short, artistic, bext"""
 
-import sys, random, time
+import sys, time
+import secrets
 
 try:
     import bext
@@ -46,10 +47,10 @@ def main():
     # Generate some logos.
     logos = []
     for i in range(NUMBER_OF_LOGOS):
-        logos.append({COLOR: random.choice(COLORS),
-                      X: random.randint(1, WIDTH - 4),
-                      Y: random.randint(1, HEIGHT - 4),
-                      DIR: random.choice(DIRECTIONS)})
+        logos.append({COLOR: secrets.SystemRandom().choice(COLORS),
+                      X: secrets.SystemRandom().randint(1, WIDTH - 4),
+                      Y: secrets.SystemRandom().randint(1, HEIGHT - 4),
+                      DIR: secrets.SystemRandom().choice(DIRECTIONS)})
         if logos[-1][X] % 2 == 1:
             # Make sure X is even so it can hit the corner.
             logos[-1][X] -= 1
@@ -104,7 +105,7 @@ def main():
 
             if logo[DIR] != originalDirection:
                 # Change color when the logo bounces:
-                logo[COLOR] = random.choice(COLORS)
+                logo[COLOR] = secrets.SystemRandom().choice(COLORS)
 
             # Move the logo. (X moves by 2 because the terminal
             # characters are twice as tall as they are wide.)

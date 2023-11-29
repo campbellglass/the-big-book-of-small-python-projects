@@ -4,7 +4,8 @@ Inspired by Nicky Case's Emoji Sim http://ncase.me/simulating/model/
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: short, bext, simulation"""
 
-import random, sys, time
+import sys, time
+import secrets
 
 try:
     import bext
@@ -50,11 +51,11 @@ def main():
                     continue
 
                 if ((forest[(x, y)] == EMPTY)
-                    and (random.random() <= GROW_CHANCE)):
+                    and (secrets.SystemRandom().random() <= GROW_CHANCE)):
                     # Grow a tree in this empty space.
                     nextForest[(x, y)] = TREE
                 elif ((forest[(x, y)] == TREE)
-                    and (random.random() <= FIRE_CHANCE)):
+                    and (secrets.SystemRandom().random() <= FIRE_CHANCE)):
                     # Lightning sets this tree on fire.
                     nextForest[(x, y)] = FIRE
                 elif forest[(x, y)] == FIRE:
@@ -80,7 +81,7 @@ def createNewForest():
     forest = {'width': WIDTH, 'height': HEIGHT}
     for x in range(WIDTH):
         for y in range(HEIGHT):
-            if (random.random() * 100) <= INITIAL_TREE_DENSITY:
+            if (secrets.SystemRandom().random() * 100) <= INITIAL_TREE_DENSITY:
                 forest[(x, y)] = TREE  # Start as a tree.
             else:
                 forest[(x, y)] = EMPTY  # Start as an empty space.

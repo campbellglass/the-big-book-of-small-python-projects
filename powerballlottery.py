@@ -3,8 +3,7 @@ A simulation of the lottery so you can experience the thrill of
 losing the lottery without wasting your money.
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: short, humor, simulation"""
-
-import random
+import secrets
 
 print('''Powerball Lottery, by Al Sweigart al@inventwithpython.com
 
@@ -96,9 +95,9 @@ input('Press Enter to start...')
 possibleNumbers = list(range(1, 70))
 for i in range(numPlays):
     # Come up with lottery numbers:
-    random.shuffle(possibleNumbers)
+    secrets.SystemRandom().shuffle(possibleNumbers)
     winningNumbers = possibleNumbers[0:5]
-    winningPowerball = random.randint(1, 26)
+    winningPowerball = secrets.SystemRandom().randint(1, 26)
 
     # Display winning numbers:
     print('The winning numbers are: ', end='')

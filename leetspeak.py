@@ -2,8 +2,7 @@
 Translates English messages into l33t5p34]<.
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: tiny, beginner, word"""
-
-import random
+import secrets
 
 try:
     import pyperclip  # pyperclip copies text to the clipboard.
@@ -41,9 +40,9 @@ def englishToLeetspeak(message):
     leetspeak = ''
     for char in message:  # Check each character:
         # There is a 70% chance we change the character to leetspeak.
-        if char.lower() in charMapping and random.random() <= 0.70:
+        if char.lower() in charMapping and secrets.SystemRandom().random() <= 0.70:
             possibleLeetReplacements = charMapping[char.lower()]
-            leetReplacement = random.choice(possibleLeetReplacements)
+            leetReplacement = secrets.SystemRandom().choice(possibleLeetReplacements)
             leetspeak = leetspeak + leetReplacement
         else:
             # Don't translate this character:

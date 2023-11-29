@@ -4,7 +4,8 @@ Inspired by matoken https://asciinema.org/a/155441
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: short, artistic, scrolling, science"""
 
-import random, sys, time
+import sys, time
+import secrets
 
 PAUSE = 0.15  # (!) Try changing this to 0.5 or 0.0.
 
@@ -50,7 +51,7 @@ try:
 
         # Select random nucleotide pairs, guanine-cytosine and
         # adenine-thymine:
-        randomSelection = random.randint(1, 4)
+        randomSelection = secrets.SystemRandom().randint(1, 4)
         if randomSelection == 1:
             leftNucleotide, rightNucleotide = 'A', 'T'
         elif randomSelection == 2:

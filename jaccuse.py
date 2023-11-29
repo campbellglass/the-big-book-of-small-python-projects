@@ -7,7 +7,8 @@ Tags: extra-large, game, humor, puzzle"""
 # https://homestarrunner.com/videlectrix/wheresanegg.html
 # More info at: http://www.hrwiki.org/wiki/Where's_an_Egg%3F
 
-import time, random, sys
+import time, sys
+import secrets
 
 # Set up the constants:
 SUSPECTS = ['DUKE HAUTDOG', 'MAXIMUM POWERS', 'BILL MONOPOLIS', 'SENATOR SCHMEAR', 'MRS. FEATHERTOSS', 'DR. JEAN SPLICER', 'RAFFLES THE CLOWN', 'ESPRESSA TOFFEEPOT', 'CECIL EDGAR VANDERTON']
@@ -36,14 +37,14 @@ knownSuspectsAndItems = []
 visitedPlaces = {}
 currentLocation = 'TAXI'  # Start the game at the taxi.
 accusedSuspects = []  # Accused suspects won't offer clues.
-liars = random.sample(SUSPECTS, random.randint(3, 4))
+liars = secrets.SystemRandom().sample(SUSPECTS, secrets.SystemRandom().randint(3, 4))
 accusationsLeft = 3  # You can accuse up to 3 people.
-culprit = random.choice(SUSPECTS)
+culprit = secrets.SystemRandom().choice(SUSPECTS)
 
 # Common indexes link these; e.g. SUSPECTS[0] and ITEMS[0] are at PLACES[0].
-random.shuffle(SUSPECTS)
-random.shuffle(ITEMS)
-random.shuffle(PLACES)
+secrets.SystemRandom().shuffle(SUSPECTS)
+secrets.SystemRandom().shuffle(ITEMS)
+secrets.SystemRandom().shuffle(PLACES)
 
 # Create data structures for clues the truth-tellers give about each
 # item and suspect.
@@ -58,12 +59,12 @@ for i, interviewee in enumerate(SUSPECTS):
     clues[interviewee] = {}
     clues[interviewee]['debug_liar'] = False  # Useful for debugging.
     for item in ITEMS:  # Select clue about each item.
-        if random.randint(0, 1) == 0:  # Tells where the item is:
+        if secrets.SystemRandom().randint(0, 1) == 0:  # Tells where the item is:
             clues[interviewee][item] = PLACES[ITEMS.index(item)]
         else:  # Tells who has the item:
             clues[interviewee][item] = SUSPECTS[ITEMS.index(item)]
     for suspect in SUSPECTS:  # Select clue about each suspect.
-        if random.randint(0, 1) == 0:  # Tells where the suspect is:
+        if secrets.SystemRandom().randint(0, 1) == 0:  # Tells where the suspect is:
             clues[interviewee][suspect] = PLACES[SUSPECTS.index(suspect)]
         else:  # Tells what item the suspect has:
             clues[interviewee][suspect] = ITEMS[SUSPECTS.index(suspect)]
@@ -81,37 +82,37 @@ for i, interviewee in enumerate(SUSPECTS):
 
     # This interviewee is a liar and gives wrong clues:
     for item in ITEMS:
-        if random.randint(0, 1) == 0:
+        if secrets.SystemRandom().randint(0, 1) == 0:
             while True:  # Select a random (wrong) place clue.
                 # Lies about where the item is.
-                clues[interviewee][item] = random.choice(PLACES)
+                clues[interviewee][item] = secrets.SystemRandom().choice(PLACES)
                 if clues[interviewee][item] != PLACES[ITEMS.index(item)]:
                     # Break out of the loop when wrong clue is selected.
                     break
         else:
             while True:  # Select a random (wrong) suspect clue.
-                clues[interviewee][item] = random.choice(SUSPECTS)
+                clues[interviewee][item] = secrets.SystemRandom().choice(SUSPECTS)
                 if clues[interviewee][item] != SUSPECTS[ITEMS.index(item)]:
                     # Break out of the loop when wrong clue is selected.
                     break
     for suspect in SUSPECTS:
-        if random.randint(0, 1) == 0:
+        if secrets.SystemRandom().randint(0, 1) == 0:
             while True:  # Select a random (wrong) place clue.
-                clues[interviewee][suspect] = random.choice(PLACES)
+                clues[interviewee][suspect] = secrets.SystemRandom().choice(PLACES)
                 if clues[interviewee][suspect] != PLACES[ITEMS.index(item)]:
                     # Break out of the loop when wrong clue is selected.
                     break
         else:
             while True:  # Select a random (wrong) item clue.
-                clues[interviewee][suspect] = random.choice(ITEMS)
+                clues[interviewee][suspect] = secrets.SystemRandom().choice(ITEMS)
                 if clues[interviewee][suspect] != ITEMS[SUSPECTS.index(suspect)]:
                     # Break out of the loop when wrong clue is selected.
                     break
 
 # Create the data structures for clues given when asked about Zophie:
 zophieClues = {}
-for interviewee in random.sample(SUSPECTS, random.randint(3, 4)):
-    kindOfClue = random.randint(1, 3)
+for interviewee in secrets.SystemRandom().sample(SUSPECTS, secrets.SystemRandom().randint(3, 4)):
+    kindOfClue = secrets.SystemRandom().randint(1, 3)
     if kindOfClue == 1:
         if interviewee not in liars:
             # They tell you who has Zophie.
@@ -119,7 +120,7 @@ for interviewee in random.sample(SUSPECTS, random.randint(3, 4)):
         elif interviewee in liars:
             while True:
                 # Select a (wrong) suspect clue.
-                zophieClues[interviewee] = random.choice(SUSPECTS)
+                zophieClues[interviewee] = secrets.SystemRandom().choice(SUSPECTS)
                 if zophieClues[interviewee] != culprit:
                     # Break out of the loop when wrong clue is selected.
                     break
@@ -131,7 +132,7 @@ for interviewee in random.sample(SUSPECTS, random.randint(3, 4)):
         elif interviewee in liars:
             while True:
                 # Select a (wrong) place clue.
-                zophieClues[interviewee] = random.choice(PLACES)
+                zophieClues[interviewee] = secrets.SystemRandom().choice(PLACES)
                 if zophieClues[interviewee] != PLACES[SUSPECTS.index(culprit)]:
                     # Break out of the loop when wrong clue is selected.
                     break
@@ -142,7 +143,7 @@ for interviewee in random.sample(SUSPECTS, random.randint(3, 4)):
         elif interviewee in liars:
             while True:
                 # Select a (wrong) item clue.
-                zophieClues[interviewee] = random.choice(ITEMS)
+                zophieClues[interviewee] = secrets.SystemRandom().choice(ITEMS)
                 if zophieClues[interviewee] != ITEMS[SUSPECTS.index(culprit)]:
                     # Break out of the loop when wrong clue is selected.
                     break

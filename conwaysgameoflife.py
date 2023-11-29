@@ -4,7 +4,8 @@ More info at: https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: short, artistic, simulation"""
 
-import copy, random, sys, time
+import copy, sys, time
+import secrets
 
 # Set up the constants:
 WIDTH = 79   # The width of the cell grid.
@@ -25,7 +26,7 @@ nextCells = {}
 for x in range(WIDTH):  # Loop over every possible column.
     for y in range(HEIGHT):  # Loop over every possible row.
         # 50/50 chance for starting cells being alive or dead.
-        if random.randint(0, 1) == 0:
+        if secrets.SystemRandom().randint(0, 1) == 0:
             nextCells[(x, y)] = ALIVE  # Add a living cell.
         else:
             nextCells[(x, y)] = DEAD  # Add a dead cell.

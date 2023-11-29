@@ -4,7 +4,8 @@ More info at: https://en.wikipedia.org/wiki/Piet_Mondrian
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: large, artistic, bext"""
 
-import sys, random
+import sys
+import secrets
 
 try:
     import bext
@@ -42,20 +43,20 @@ while True:  # Main application loop.
 
     # Generate vertical lines:
     numberOfSegmentsToDelete = 0
-    x = random.randint(MIN_X_INCREASE, MAX_X_INCREASE)
+    x = secrets.SystemRandom().randint(MIN_X_INCREASE, MAX_X_INCREASE)
     while x < width - MIN_X_INCREASE:
         numberOfSegmentsToDelete += 1
         for y in range(height):
             canvas[(x, y)] = BLACK
-        x += random.randint(MIN_X_INCREASE, MAX_X_INCREASE)
+        x += secrets.SystemRandom().randint(MIN_X_INCREASE, MAX_X_INCREASE)
 
     # Generate horizontal lines:
-    y = random.randint(MIN_Y_INCREASE, MAX_Y_INCREASE)
+    y = secrets.SystemRandom().randint(MIN_Y_INCREASE, MAX_Y_INCREASE)
     while y < height - MIN_Y_INCREASE:
         numberOfSegmentsToDelete += 1
         for x in range(width):
             canvas[(x, y)] = BLACK
-        y += random.randint(MIN_Y_INCREASE, MAX_Y_INCREASE)
+        y += secrets.SystemRandom().randint(MIN_Y_INCREASE, MAX_Y_INCREASE)
 
     numberOfRectanglesToPaint = numberOfSegmentsToDelete - 3
     numberOfSegmentsToDelete = int(numberOfSegmentsToDelete * 1.5)
@@ -64,8 +65,8 @@ while True:  # Main application loop.
     for i in range(numberOfSegmentsToDelete):
         while True:  # Keep selecting segments to try to delete.
             # Get a random start point on an existing segment:
-            startx = random.randint(1, width - 2)
-            starty = random.randint(1, height - 2)
+            startx = secrets.SystemRandom().randint(1, width - 2)
+            starty = secrets.SystemRandom().randint(1, height - 2)
             if canvas[(startx, starty)] == WHITE:
                 continue
 
@@ -146,8 +147,8 @@ while True:  # Main application loop.
     # Paint the rectangles:
     for i in range(numberOfRectanglesToPaint):
         while True:
-            startx = random.randint(1, width - 2)
-            starty = random.randint(1, height - 2)
+            startx = secrets.SystemRandom().randint(1, width - 2)
+            starty = secrets.SystemRandom().randint(1, height - 2)
 
             if canvas[(startx, starty)] != WHITE:
                 continue  # Get a new random start point.
@@ -155,7 +156,7 @@ while True:  # Main application loop.
                 break
 
         # Flood fill algorithm:
-        colorToPaint = random.choice([RED, YELLOW, BLUE, BLACK])
+        colorToPaint = secrets.SystemRandom().choice([RED, YELLOW, BLUE, BLACK])
         pointsToPaint = set([(startx, starty)])
         while len(pointsToPaint) > 0:
             x, y = pointsToPaint.pop()

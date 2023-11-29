@@ -2,8 +2,7 @@
 Try to guess the secret number based on hints.
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: tiny, beginner, game"""
-
-import random
+import secrets
 
 
 def askForGuess():
@@ -17,7 +16,7 @@ def askForGuess():
 
 print('Guess the Number, by Al Sweigart al@inventwithpython.com')
 print()
-secretNumber = random.randint(1, 100)  # Select a random number.
+secretNumber = secrets.SystemRandom().randint(1, 100)  # Select a random number.
 print('I am thinking of a number between 1 and 100.')
 
 for i in range(10):  # Give the player 10 guesses.

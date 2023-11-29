@@ -3,7 +3,8 @@ An animation of an hourglass with falling sand. Press Ctrl-C to stop.
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: large, artistic, bext, simulation"""
 
-import random, sys, time
+import sys, time
+import secrets
 
 try:
     import bext
@@ -77,7 +78,7 @@ def runHourglassSimulation(allSand):
     """Keep running the sand falling simulation until the sand stops
     moving."""
     while True:  # Keep looping until sand has run out.
-        random.shuffle(allSand)  # Random order of grain simulation.
+        secrets.SystemRandom().shuffle(allSand)  # Random order of grain simulation.
 
         sandMovedOnThisStep = False
         for i, sand in enumerate(allSand):
@@ -129,11 +130,11 @@ def runHourglassSimulation(allSand):
                     fallingDirection = 1  # Set the sand to fall right.
                 elif canFallLeft and canFallRight:
                     # Both are possible, so randomly set it:
-                    fallingDirection = random.choice((-1, 1))
+                    fallingDirection = secrets.SystemRandom().choice((-1, 1))
 
                 # Check if the sand can "far" fall two spaces to
                 # the left or right instead of just one space:
-                if random.random() * 100 <= WIDE_FALL_CHANCE:
+                if secrets.SystemRandom().random() * 100 <= WIDE_FALL_CHANCE:
                     belowTwoLeft = (sand[X] - 2, sand[Y] + 1)
                     noSandBelowTwoLeft = belowTwoLeft not in allSand
                     noWallBelowTwoLeft = belowTwoLeft not in HOURGLASS
@@ -154,7 +155,7 @@ def runHourglassSimulation(allSand):
                     elif not canFallTwoLeft and canFallTwoRight:
                         fallingDirection = 2
                     elif canFallTwoLeft and canFallTwoRight:
-                        fallingDirection = random.choice((-2, 2))
+                        fallingDirection = secrets.SystemRandom().choice((-2, 2))
 
                 if fallingDirection == None:
                     # This sand can't fall, so move on.

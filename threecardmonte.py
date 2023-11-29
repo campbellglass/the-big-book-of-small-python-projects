@@ -6,7 +6,8 @@ More info at https://en.wikipedia.org/wiki/Three-card_Monte
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: large, card game, game"""
 
-import random, time
+import time
+import secrets
 
 # Set up the constants:
 NUM_SWAPS = 16   # (!) Try changing this to 30 or 100.
@@ -46,8 +47,8 @@ def displayCards(cards):
 def getRandomCard():
     """Returns a random card that is NOT the Queen of Hearts."""
     while True:  # Make cards until you get a non-Queen of hearts.
-        rank = random.choice(list('23456789JQKA') + ['10'])
-        suit = random.choice([HEARTS, DIAMONDS, SPADES, CLUBS])
+        rank = secrets.SystemRandom().choice(list('23456789JQKA') + ['10'])
+        suit = secrets.SystemRandom().choice([HEARTS, DIAMONDS, SPADES, CLUBS])
 
         # Return the card as long as it's not the Queen of Hearts:
         if rank != 'Q' and suit != HEARTS:
@@ -62,14 +63,14 @@ print()
 
 # Show the original arrangement:
 cards = [('Q', HEARTS), getRandomCard(), getRandomCard()]
-random.shuffle(cards)  # Put the Queen of Hearts in a random place.
+secrets.SystemRandom().shuffle(cards)  # Put the Queen of Hearts in a random place.
 print('Here are the cards:')
 displayCards(cards)
 input('Press Enter when you are ready to begin...')
 
 # Print the swaps:
 for i in range(NUM_SWAPS):
-    swap = random.choice(['l-m', 'm-r', 'l-r', 'm-l', 'r-m', 'r-l'])
+    swap = secrets.SystemRandom().choice(['l-m', 'm-r', 'l-r', 'm-l', 'r-m', 'r-l'])
 
     if swap == 'l-m':
         print('swapping left and middle...')

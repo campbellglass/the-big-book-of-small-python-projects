@@ -4,7 +4,8 @@ A simulation of one million dice rolls.
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: tiny, beginner, math, simulation"""
 
-import random, time
+import time
+import secrets
 
 print('''Million Dice Roll Statistics Simulator
 By Al Sweigart al@inventwithpython.com
@@ -27,7 +28,7 @@ for i in range(1000000):
 
     total = 0
     for j in range(numberOfDice):
-        total = total + random.randint(1, 6)
+        total = total + secrets.SystemRandom().randint(1, 6)
     results[total] = results[total] + 1
 
 # Display results:

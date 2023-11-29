@@ -3,7 +3,8 @@ The classic hand game of luck.
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: short, game"""
 
-import random, time, sys
+import time, sys
+import secrets
 
 print('''Rock, Paper, Scissors, by Al Sweigart al@inventwithpython.com
 - Rock beats scissors.
@@ -51,7 +52,7 @@ while True:  # Main game loop.
     time.sleep(0.25)
 
     # Display what the computer chose:
-    randomNumber = random.randint(1, 3)
+    randomNumber = secrets.SystemRandom().randint(1, 3)
     if randomNumber == 1:
         computerMove = 'ROCK'
     elif randomNumber == 2:

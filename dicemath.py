@@ -3,7 +3,8 @@ A flash card addition game where you sum the total on random dice rolls.
 View this code at https://nostarch.com/big-book-small-python-projects
 Tags: large, artistic, game, math"""
 
-import random, time
+import time
+import secrets
 
 # Set up the constants:
 DICE_WIDTH = 9
@@ -97,8 +98,8 @@ while time.time() < startTime + QUIZ_DURATION:  # Main game loop.
     # Come up with the dice to display:
     sumAnswer = 0
     diceFaces = []
-    for i in range(random.randint(MIN_DICE, MAX_DICE)):
-        die = random.choice(ALL_DICE)
+    for i in range(secrets.SystemRandom().randint(MIN_DICE, MAX_DICE)):
+        die = secrets.SystemRandom().choice(ALL_DICE)
         # die[0] contains the list of strings of the die face:
         diceFaces.append(die[0])
         # die[1] contains the integer number of pips on the face:
@@ -111,8 +112,8 @@ while time.time() < startTime + QUIZ_DURATION:  # Main game loop.
     for i in range(len(diceFaces)):
         while True:
             # Find a random place on the canvas to put the die:
-            left = random.randint(0, CANVAS_WIDTH  - 1 - DICE_WIDTH)
-            top  = random.randint(0, CANVAS_HEIGHT - 1 - DICE_HEIGHT)
+            left = secrets.SystemRandom().randint(0, CANVAS_WIDTH  - 1 - DICE_WIDTH)
+            top  = secrets.SystemRandom().randint(0, CANVAS_HEIGHT - 1 - DICE_HEIGHT)
 
             # Get the x, y coordinates for all four corners:
             #      left

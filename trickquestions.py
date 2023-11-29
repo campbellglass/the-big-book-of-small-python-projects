@@ -3,7 +3,8 @@ A quiz of several trick questions.
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: large, humor"""
 
-import random, sys
+import sys
+import secrets
 
 # QUESTIONS is a list of dictionaries, each dictionary represents a
 # trick question and its answer. The dictionary has the keys 'question'
@@ -188,7 +189,7 @@ Can you figure out the answers to these trick questions?
 
 input('Press Enter to begin...')
 
-random.shuffle(QUESTIONS)
+secrets.SystemRandom().shuffle(QUESTIONS)
 score = 0
 
 for questionNumber, qa in enumerate(QUESTIONS):  # Main program loop.
@@ -208,11 +209,11 @@ for questionNumber, qa in enumerate(QUESTIONS):  # Main program loop.
             correct = True
 
     if correct:
-        text = random.choice(CORRECT_TEXT)
+        text = secrets.SystemRandom().choice(CORRECT_TEXT)
         print(text, qa['answer'])
         score += 1
     else:
-        text = random.choice(INCORRECT_TEXT)
+        text = secrets.SystemRandom().choice(INCORRECT_TEXT)
         print(text, 'The answer is:', qa['answer'])
     response = input('Press Enter for the next question...').lower()
 

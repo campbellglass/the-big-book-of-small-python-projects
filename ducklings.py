@@ -8,7 +8,8 @@ A screensaver of many many ducklings.
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: large, artistic, object-oriented, scrolling"""
 
-import random, shutil, sys, time
+import shutil, sys, time
+import secrets
 
 # Set up the constants:
 PAUSE = 0.2  # (!) Try changing this to 1.0 or 0.0.
@@ -49,7 +50,7 @@ def main():
     while True:  # Main program loop.
         for laneNum, ducklingObj in enumerate(ducklingLanes):
             # See if we should create a duckling in this lane:
-            if (ducklingObj == None and random.random() <= DENSITY):
+            if (ducklingObj == None and secrets.SystemRandom().random() <= DENSITY):
                     # Place a duckling in this lane:
                     ducklingObj = Duckling()
                     ducklingLanes[laneNum] = ducklingObj
@@ -72,16 +73,16 @@ def main():
 class Duckling:
     def __init__(self):
         """Create a new duckling with random body features."""
-        self.direction = random.choice([LEFT, RIGHT])
-        self.body = random.choice([CHUBBY, VERY_CHUBBY])
-        self.mouth = random.choice([OPEN, CLOSED])
-        self.wing = random.choice([OUT, UP, DOWN])
+        self.direction = secrets.SystemRandom().choice([LEFT, RIGHT])
+        self.body = secrets.SystemRandom().choice([CHUBBY, VERY_CHUBBY])
+        self.mouth = secrets.SystemRandom().choice([OPEN, CLOSED])
+        self.wing = secrets.SystemRandom().choice([OUT, UP, DOWN])
 
         if self.body == CHUBBY:
             # Chubby ducklings can only have beady eyes.
             self.eyes = BEADY
         else:
-            self.eyes = random.choice([BEADY, WIDE, HAPPY, ALOOF])
+            self.eyes = secrets.SystemRandom().choice([BEADY, WIDE, HAPPY, ALOOF])
 
         self.partToDisplayNext = HEAD
 

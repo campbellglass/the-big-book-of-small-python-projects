@@ -3,7 +3,8 @@ Fast-paced snail racing action!
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: short, artistic, beginner, game, multiplayer"""
 
-import random, time, sys
+import time, sys
+import secrets
 
 # Set up the constants:
 MAX_NUM_SNAILS = 8
@@ -54,8 +55,8 @@ time.sleep(1.5)  # The pause right before the race starts.
 
 while True:  # Main program loop.
     # Pick random snails to move forward:
-    for i in range(random.randint(1, numSnailsRacing // 2)):
-        randomSnailName = random.choice(snailNames)
+    for i in range(secrets.SystemRandom().randint(1, numSnailsRacing // 2)):
+        randomSnailName = secrets.SystemRandom().choice(snailNames)
         snailProgress[randomSnailName] += 1
 
         # Check if a snail has reached the finish line:
